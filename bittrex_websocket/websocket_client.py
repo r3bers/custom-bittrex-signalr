@@ -190,12 +190,12 @@ class BittrexSocket(WebSocket):
         
     async def _on_balance_delta(self, args):
         msg = await process_message(args[0])
-        msg['invoke_type'] = BittrexMethods.BALANCE_DELTA
+        msg['invoke_type'] = BittrexMethods.SUBSCRIBE_TO_BALANCE_DELTAS
         await self.on_private(msg)
 
     async def _on_order_delta(self, args):
         msg = await process_message(args[0])
-        msg['invoke_type'] = BittrexMethods.ORDER_DELTA
+        msg['invoke_type'] = BittrexMethods.SUBSCRIBE_TO_ORDER_DELTAS
         await self.on_private(msg)
 
     async def _on_debug(self, **kwargs):
