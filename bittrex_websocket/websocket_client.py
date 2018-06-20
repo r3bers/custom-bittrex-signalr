@@ -62,11 +62,11 @@ class BittrexSocket(WebSocket):
         hub = connection.register_hub(BittrexParameters.HUB)
         connection.received += self._on_debug
         connection.error += self.on_error
-        hub.client.on(BittrexParameters.MARKET_DELTA, self._on_public)
-        hub.client.on(BittrexParameters.SUMMARY_DELTA, self._on_public)
-        hub.client.on(BittrexParameters.SUMMARY_DELTA_LITE, self._on_public)
-        hub.client.on(BittrexParameters.BALANCE_DELTA, self._on_private)
-        hub.client.on(BittrexParameters.ORDER_DELTA, self._on_private)
+        hub.client.on(BittrexParameters.MARKET_DELTA, self._on_market_delta)
+        hub.client.on(BittrexParameters.SUMMARY_DELTA, self._on_summary_delta)
+        hub.client.on(BittrexParameters.SUMMARY_DELTA_LITE, self._on_summary_delta_lite)
+        hub.client.on(BittrexParameters.BALANCE_DELTA, self._on_balance_delta)
+        hub.client.on(BittrexParameters.ORDER_DELTA, self._on_order_delta)
         self.connection = BittrexConnection(connection, hub)
         thread = Thread(target=self._connection_handler, daemon=True, name='SocketConnectionThread')
         self.threads.append(thread)
@@ -173,19 +173,29 @@ class BittrexSocket(WebSocket):
     # Private Channel Methods
     # =======================
 
-    async def _on_public(self, args):
+    async def _on_market_delta(self, args):
         msg = await process_message(args[0])
-        if 'D' in msg:
-            if len(msg['D'][0]) > 3:
-                msg['invoke_type'] = BittrexMethods.SUBSCRIBE_TO_SUMMARY_DELTAS
-            else:
-                msg['invoke_type'] = BittrexMethods.SUBSCRIBE_TO_SUMMARY_LITE_DELTAS
-        else:
-            msg['invoke_type'] = BittrexMethods.SUBSCRIBE_TO_EXCHANGE_DELTAS
+        msg['invoke_type'] = BittrexMethods.SUBSCRIBE_TO_EXCHANGE_DELTAS
         await self.on_public(msg)
 
-    async def _on_private(self, args):
+    async def _on_summary_delta(self, args):
         msg = await process_message(args[0])
+        msg['invoke_type'] = BittrexMethods.SUBSCRIBE_TO_SUMMARY_DELTAS
+        await self.on_public(msg)
+        
+    async def _on_summary_delta_lite(self, args):
+        msg = await process_message(args[0])
+        msg['invoke_type'] = BittrexMethods.SUBSCRIBE_TO_SUMMARY_LITE_DELTAS
+        await self.on_public(msg)
+        
+    async def _on_balance_delta(self, args):
+        msg = await process_message(args[0])
+        msg['invoke_type'] = BittrexMethods.BALANCE_DELTA
+        await self.on_private(msg)
+
+    async def _on_order_delta(self, args):
+        msg = await process_message(args[0])
+        msg['invoke_type'] = BittrexMethods.ORDER_DELTA
         await self.on_private(msg)
 
     async def _on_debug(self, **kwargs):
