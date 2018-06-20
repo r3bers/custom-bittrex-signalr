@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# bittrex_websocket/_abc.py
+# bittrex_signalr/_abc.py
 # Stanislav Lazarov
 #
 # Official Bittrex documentation: https://github.com/Bittrex/beta

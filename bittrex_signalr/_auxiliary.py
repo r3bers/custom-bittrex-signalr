@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# bittrex_websocket/_auxiliary.py
+# bittrex_signalr/_auxiliary.py
 # Stanislav Lazarov
 
 import logging

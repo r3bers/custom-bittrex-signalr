@@ -1,8 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# bittrex_websocket/websocket_client.py
+# bittrex_signalr/websocket_client.py
 # Stanislav Lazarov
+# Mikhail Solovjov
 
 import logging
 from ._logger import add_stream_logger, remove_stream_logger
@@ -182,12 +183,12 @@ class BittrexSocket(WebSocket):
         msg = await process_message(args[0])
         msg['invoke_type'] = BittrexMethods.SUBSCRIBE_TO_SUMMARY_DELTAS
         await self.on_public(msg)
-        
+
     async def _on_summary_delta_lite(self, args):
         msg = await process_message(args[0])
         msg['invoke_type'] = BittrexMethods.SUBSCRIBE_TO_SUMMARY_LITE_DELTAS
         await self.on_public(msg)
-        
+
     async def _on_balance_delta(self, args):
         msg = await process_message(args[0])
         msg['invoke_type'] = BittrexMethods.SUBSCRIBE_TO_BALANCE_DELTAS

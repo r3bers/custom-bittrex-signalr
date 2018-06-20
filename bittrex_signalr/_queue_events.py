@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# bittrex_websocket/_queue_events.py
+# bittrex_signalr/_queue_events.py
 # Stanislav Lazarov
 
 from .constants import EventTypes

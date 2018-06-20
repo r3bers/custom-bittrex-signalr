@@ -14,7 +14,7 @@
 
 from __future__ import print_function
 from time import sleep
-from bittrex_websocket import BittrexSocket, BittrexMethods
+from bittrex_signalr import BittrexSocket, BittrexMethods
 
 
 def main():

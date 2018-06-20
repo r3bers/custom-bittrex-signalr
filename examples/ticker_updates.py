@@ -14,7 +14,7 @@
 #    in ticker_updates_container and adds it if not.
 # 4) Disconnects when it has data information for each ticker.
 
-from bittrex_websocket.websocket_client import BittrexSocket
+from bittrex_signalr.websocket_client import BittrexSocket
 from time import sleep
 
 

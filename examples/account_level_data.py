@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# bittrex_websocket/examples/account_level_data.py
+# bittrex_signalr/examples/account_level_data.py
 # Stanislav Lazarov
 
 # Sample script showing how to subscribe to the private callbacks (Balance Delta and Order Delta) of Bittrex.
@@ -9,7 +9,7 @@
 # For more info check _abc.py or https://github.com/Bittrex/beta
 
 
-from bittrex_websocket.websocket_client import BittrexSocket
+from bittrex_signalr.websocket_client import BittrexSocket
 from time import sleep
 
 

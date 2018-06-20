@@ -9,17 +9,17 @@ install_requires = \
     ]
 
 setup(
-    name='bittrex-websocket-aio',
-    version='0.0.0.2.8',
-    author='Stanislav Lazarov',
-    author_email='s.a.lazarov@gmail.com',
+    name='custom-bittrex-signalr',
+    version='0.0.0.3.0',
+    author='Mikhail Solovjov',
+    author_email='mike@solovjov.net',
     license='MIT',
-    url='https://github.com/slazarov/python-bittrex-websocket-aio',
+    url='https://github.com/r3bers/custom-bittrex-signalr',
     packages=find_packages(exclude=['tests*']),
     install_requires=install_requires,
     description='The unofficial Python websocket (AsyncIO) client for the Bittrex Cryptocurrency Exchange',
-    download_url='https://github.com/slazarov/python-bittrex-websocket-aio.git',
-    keywords=['bittrex', 'bittrex-websocket', 'orderbook', 'trade', 'bitcoin', 'ethereum', 'BTC', 'ETH', 'client',
+    download_url='https://github.com/r3bers/custom-bittrex-signalr.git',
+    keywords=['bittrex', 'bittrex-signalr', 'orderbook', 'trade', 'bitcoin', 'ethereum', 'BTC', 'ETH', 'client',
               'websocket', 'exchange', 'crypto', 'currency', 'trading', 'async', 'aio'],
     classifiers=[
         'Development Status :: 3 - Alpha',

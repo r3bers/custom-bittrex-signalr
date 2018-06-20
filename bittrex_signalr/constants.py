@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# bittrex_websocket/constants.py
+# bittrex_signalr/constants.py
 # Stanislav Lazarov
 
 
