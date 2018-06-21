@@ -82,11 +82,11 @@ class BittrexSocket(WebSocket):
         try:
             self.connection.conn.start()
         except ConnectionClosed as e:
-            if e.code == 1000:
-                logger.info('Bittrex connection successfully closed.')
-            elif e.code == 1006:
-                event = ReconnectEvent(e.args[0])
-                self.control_queue.put(event)
+            # if e.code == 1000:
+            logger.info('Bittrex connection closed with code: ' + str(e.code))
+            # elif e.code == 1006:
+            event = ReconnectEvent(e.args[0])
+            self.control_queue.put(event)
         except ConnectionError as e:
             raise ConnectionError(e)
         except InvalidStatusCode as e:
